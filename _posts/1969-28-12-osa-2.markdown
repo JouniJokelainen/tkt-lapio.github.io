@@ -8,17 +8,18 @@ tag: material
 
 # Oppimistavoitteet
 
-Tämän osan tavoitteina on, että opiskelija
+Tavoitteena on, että opiskelija
 
-- Ymmärtää, mitä hyötyöä versionhallinnan käyttämisessä on
+- Ymmärtää, mitä hyötyöä versionhallinnan käyttämisestä on
 - Osaa luoda Git-projektin.
 - Tietää, mikä on commit, ja osaa luoda sellaisen.
 - Ymmärtää, missä eri tiloissa muutos on, kun sitä lisätään commitiin, ja miten muutoksia voi perua, ennen kuin ne on lisätty committiin.
-- Tietää, mikä on master-haara.
+- Osaa palauttaa jo säilötyn muutoksen edelliseen tilaan.
+- Tietää, mikä on branch eli haara ja osaa käyttää niitä työskentelyn apuna.
 - Osaa lukea komennon `git status` tulostusta.
 - Osaa luoda GitHubissa repositorion, ja lisätä sen projektin etärepositorioksi.
-  - Osaa käyttää GitHubia SSH-yhteyden kautta.
-- Osaa julkaista paikallisesti luomansa commitit.
+  - Osaa käyttää GitHubia HTTSPS ja SSH-yhteyden kautta.
+- Osaa julkaista paikallisesti luomansa commitit etärepositorioon.
 - Osaa hakea etärepositoriosta uusimmat commitit.
 - Osaa asettaa muutoksia stashiin, ja siirtää niitä takaisin näkyville.
 - Ymmärtää, mikä on merge-commit.
@@ -32,25 +33,25 @@ Tämän osan tavoitteina on, että opiskelija
   - Tietää, mikä on pull request.
 - Osaa hakea tietoa Gitin käytöstä internetistä.
 
-# Versionhallinta: Git ja GitHub
+# Versionhallinta:
 
-Tässä osassa käsitellään versionhallintaa. Versionhallinta tarkoittaa palvelua, joka säilöö koodia. Sen käyttöön on pääsääntöisesti kaksi motiivia: Versionhallinnan avulla voidaan pitää varmuuskopioita sekä ohjelman nykyisestä, että aiemmista versiosta. Lisäksi sen avulla voidaan helposti jakaa koodia muille, sekä osallistua muiden projekteihin.
+Yleisellä tasolla versionhallinta tarkoittaa menetelmää, joka säilöö tietoa ja siihen tehtyjä muutoksia. Sen käyttöön on pääsääntöisesti kaksi syytä: Versionhallinnan avulla tiedosta voidaan pitää varmuuskopioita sekä sen nykyisestä, kuin myös aiemmista versiosta. Lisäksi sen avulla voidaan jakaa tietoa muille, sekä osallistua muiden projekteihin.
 
-Versionhallintatyökalujen avulla on mahdollista merkitä jokin projektin tila sellaiseksi, että siihen voidaan palata myöhemmin. Näin ollen jos jotain menee pieleen uusien ominaisuuksien kehityksessä, voidaan palata aikaisempaan, toimivaan versioon. Versionhallinnassa pidetään kaikkia merkittyjä tiloja. Näin ollen nähdään, miten ohjelman kehitys on edistynyt, milloin ja millaisia muutoksia ollaan tehty, ja kenen toimesta. Tämä helpottaa myös esimerkiksi suurempien bugien, eli ohjelman toiminnassa esiintyvien virheiden metsästystä.
+Versionhallinnan työkalujen avulla on mahdollista merkitä jokin tiedon tila sellaiseksi, että siihen voidaan myöhemmin palata . Näin ollen jos jotain menee pieleen, voidaan  aikaisempaan tilanteeseen palata. Versionhallinta pitää tallessa kaikkia tiedon merkittyjä tiloja. Näin ollen voidaan myöhemmin tarkastella, miten tietoa on muutettu, milloin ja millaisia muutoksia siihen on tehty, ja kenen toimesta. Versionhallintaohjelma onkin erittäin yleisesti sovelluskehityksessä käytetty työkalu. Sen ominaisuudet helpottavat  bugien, eli sovelluksen toiminnassa esiintyvien virheiden löytämistä ja korjaamista.
 
-Toisin kuin useiden mielikuvissa, koodaaminen tapahtuu useimmiten ryhmässä. Versionhallintatyökalujen avulla ihmisten on mahdollista käyttää ja kehittää toistensa tekemää koodia, jopa tapaamatta koskaan fyysisesti. Projekteille on mahdollista antaa niin sanallista palautetta, kuten vikailmoituksia, kuin konkreettisia parannusehdotuksia koodin muodossa. Lisäksi kaikki tekijät näkevät koodin kehityskaaren, jolloin on helpompi tehdä yhteistyötä.
+Toisin kuin yleisesti ajatellaan, sovelluskehitysprojektit tapahtuvat useimmiten ryhmätyönä. Versionhallintatyökalujen avulla on mahdollista käyttää ja kehittää muiden tekemää lähdekoodia, tapaamatta heitä koskaan fyysisesti. Versiohallinta mahdollistaa sanallisen palautteen ja keskustelun kommenttien muodossa.  Vikailmoituksia ja konkreettisia parannusehdotuksia voidaan antaa, koodin sekä sanallisen palautteen muodossa. Lisäksi tekijät näkevät lähdekoodin koko kehityskaaren, jolloin yhteistyötä on helpompaa tehdä.
 
 Muun muassa Visual Studion [sivuilla](https://www.visualstudio.com/learn/what-is-version-control/?rr=https%3A%2F%2Fwww.google.fi%2F) on tiivistetty hyvin versionhallinnan hyviä puolia. Atlassian Bitbucket [kirjoittaa](https://www.atlassian.com/git/tutorials/what-is-version-control) versionhallinnasta pidemmin.
 
-Git on eräs versionhallintatyökalu. Tässä osassa käsitellään Gitin ja siihen liittyvän GitHub-palvelun käyttöä erityisesti koodiprojektien kontekstissa.
+Git on yksi monista versionhallintajärjestelmistä. Muita käytössä olevia versionhallintajärjestelmiä ovat mm. Subversion ja Perforce. Tässä materiaalissa käsitellään kuitenkin Gitin ja siihen liittyvän GitHub-palvelun käyttöä tiedonhallinnassa.
 
-## Yleisesti Gitistä
+## Yleisesti Gitistä ja GitHubista
 
-Gitin on luonut Helsingin yliopiston tietojenkäsittelytieteen laitoksella 90-luvulla opiskellut Linus Torvalds. Torvalds tunnetaan luultavasti paremmin Linux-kernelin kehittäjänä, joka toimii "sydämenä" monille erittäin suosituille käyttöjärjestelmille, kuten Googlen [Androidille](<https://en.wikipedia.org/wiki/Android_(operating_system)>). Lähes kaikissa osaston koneissa on Linux-käyttöjärjestelmä. Torvalds kehitti Gitin nimenomaan omiin tarpeisiinsa koodatessaan Linux-kerneliä: hän tarvitsi työkalun, jolla voi säilyttää eri versioita omasta koodistaan, sekä jakaa sitä muiden kehitykseen osallistuneiden kanssa.
+Gitin on luonut  paremmin  Linux-kernelin kehittäjänä tunnettu Linus Torvalds. Torvalds kehitti Gitin alunperin omiin tarpeisiinsa koodatessaan Linux-kerneliä: hän tarvitsi työkalun, jonka avulla voisi säilyttää eri versioita koodistaan, sekä jakaa sitä muiden kehitykseen osallistuneiden kanssa.
 
-GitHub on myöhemmin kehitetty palvelu, jonka avulla voidaan säilyttää ja julkaista Git-projekteja. GitHubiin verrannollisia palveluita on useita, kuten esimerkiksi [GitLab](https://about.gitlab.com/) sekä yliopiston oma GitLab-asennus osoitteessa https://version.helsinki.fi/. Laitoksellamme GitHubin käyttö on kuitenkin yleisempää, siksi tämä osa käsittelee GitHubia.
+GitHub puolestaan on myöhemmin kehitetty palvelu, jonka avulla voidaan säilyttää ja julkaista Git-projekteja. GitHubiin verrannollisia palveluita on useita, kuten esimerkiksi [GitLab](https://about.gitlab.com/).
 
-Gittiä ja GitHubia käytetään yliopistolla yksilö- ja ryhmätöissä, sekä yleisesti työelämässä. Niiden käyttö ei rajoitu pelkästään koodiin, vaan moni pitää esimerkiksi kandinsa tai maisterinsa Gitissä. Tässä osassa keskitytään lähinnä koodin jakamiseen Gitin avulla GitHubissa, ja siinä usein kohdattuihin ongelmiin. Lisää Gitistä oppii esimerkiksi kursseilla Ohjelmistotekniikka ja Ohjelmistotuotanto.
+Gittiä ja GitHubia käytetään yleisesti sekä työelämässä että harrastusprojekteissa. Käyttö ei rajoitu pelkästään koodiin, vaan sen avulla voidaan tallentaa muutakin varmentamisen arvoista tietoa.  Kaikkien tiedostomuotojen versionhallintaan Git ei sovellu ainakaan suoraan.  Esimerkiksi Microsoft Office ohjelmien  tallennusmuodot ja kuvatiedostot eivät sovellu Gitin avulla hallittavaviksi. Git onkin alunperin rakennettu tekstimuotoisten tiedostojen versionhallintajärjestelmäksi. Tämän takia Git onkin suosittu versiohallintajärjestelmän sovelluskehittäjien keskuudessa.
 
 <div class="exercise">
 <h3>Tehtävä 1: Github-tunnuksen luonti {% include points.html text="5%" %}</h3>

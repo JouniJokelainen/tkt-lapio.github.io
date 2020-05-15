@@ -11,7 +11,7 @@ list_title: Materiaali
 
 <h1 id="main-title">Tervetuloa Tietokone Työvälineenä -kurssin kotisivulle. </h1>
 
-Tämä kurssi on tarkoitettu Helsingin yliopiston tietojenkäsittelytieteen ensimmäisen vuoden opiskelijoille. Kurssilla tutustutaan komentoriviin Unix-tyyppisissä järjestelmissä, opetellaan Git-versionhallintatyökalun käyttöä sekä hieman HTML ja CSS-kieliä. Tarkoituksena on oppia tietojenkäsittelytietelijän käytännön taitoja, ja käyttämään opinnoissa hyödyllisiä työvälineitä. Kurssilla harjoitellaan myös tiedon itsenäistä hakemista internetistä.
+Tämä kurssi on tarkoitettu Riverian  opiskelijoille. Kurssilla tutustutaan komentoriviin Unix-tyyppisissä järjestelmissä, opetellaan Git-versionhallintatyökalun käyttöä sekä hieman HTML ja CSS-kieliä. Tarkoituksena on oppia tietojenkäsittelyn käytännön taitoja, ja käyttämään opinnoissa ja työskentelyssä hyödyllisiä taitoja. Kurssilla harjoitellaan myös tiedon itsenäistä hakemista internetistä.
 
 <h2>Kurssin suorittaminen</h2>
 Kurssi suoritetaan verkkotentillä, joka tehdään [Moodle-oppimisympäristössä](https://moodle.helsinki.fi/). Moodle on yliopistolla lajaasti käytössä oleva sivusto, joka mahdollistaa sähköisen etäopetuksen järjestämisen. Kurssille on olemassa [oma kurssialue]({{course.moodle}}). Moodle-alueelle pääsy vaatii kurssiavaimen, joka on <strong>lapio-on-tyovaline</strong>. Tentti perustuu pääosin tältä sivustolta löytyvään materiaaliin, joka on jaettu kolmeen osaan: Komentorivin perusteet, Git ja versionhallinta, sekä HTML ja CSS.
@@ -76,14 +76,9 @@ Kysy rohkeasti apua, mikäli kohtaat ongelmia, ja ilmoita, mikäli voimme parant
 
 Kurssin suorittaminen vaatii muutaman ohjelman asentamista koneelle. Mikäli et suorita kurssia osaston koneilla, varmista, että sinulla on käyttämääsi järjestelmään asennusoikeus.
 
-Jos teet tehtäviä omalla kannettavalla, ja olet läsnäoleva yliopisto-opiskelija, asenna ensin [Eduroam](https://www.eduroam.org/what-is-eduroam/), jolla pääset internetiin Helsingin yliopiston kampusalueilla. Helpdeskillä on sille [ohjeet](https://helpdesk.it.helsinki.fi/ohjeet/kirjautuminen-ja-yhteydet/verkkoyhteydet/eduroam-verkon-asennus-asetustiedoston-avulla). Suosi aina Eduroamia yliopiston toisen verkon, HUPnetin yli. Internetin käyttö Eduroamin yli on turvallisempaa, ja se on saatavilla kampusalueilla myös ulkomailla.
-
-**Mikäli olet tietojenkäsittelytieteen pää- tai sivuaineopiskelija, aktivoi yliopiston tunnuksesi [täällä](https://helpdesk.it.helsinki.fi/ohjeet/kirjautuminen-ja-yhteydet/kayttajatunnus/uuden-kayttajatunnuksen-aktivointi) ja CS-tunnuksesi seuraavan sivun [ohjeiden](https://www.cs.helsinki.fi/tietotekniikka/k-ytt-luvat) mukaan ennen materiaalin lukemista.** Tehtävät on mahdollista tehdä ilman tietojenkäsittelytieteen käyttölupaa, mutta tulet todennäköisesti tarvitsemaan sitä tulevaisuudessa. Joulun aikaan yliopiston järjestelmissä on katko, jolloin käyttöluvan aktivointi ei onnistu. Voit silloin tehdä silti tehtävät, ja aktivoida tunnuksen myöhemmin. 
-
 ## Ohjeita materiaalin lukemiseen
 
 Prosenttiluku tehtävän nimen jälkeen kertoo, kuinka monta prosenttia se vastaa kyseisen osan laskaripisteistä.
 
 Materiaali on rakennettu niin, että sitä voi seurata tehden esimerkit samalla. Suosittelemme tätä vahvasti.
 
-Mikäli löydät virheen tai typon materiaalista, forkkaa [tämä](https://github.com/tkt-lapio/tkt-lapio.github.io) projekti, korjaa virhe omaan versioosi, ja tee pull request (tästä puhutaan toisessa osassa).
