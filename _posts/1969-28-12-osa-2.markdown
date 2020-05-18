@@ -51,29 +51,30 @@ Gitin on luonut  paremmin  Linux-kernelin kehittäjänä tunnettu Linus Torvalds
 
 GitHub puolestaan on myöhemmin kehitetty palvelu, jonka avulla voidaan säilyttää ja julkaista Git-projekteja. GitHubiin verrannollisia palveluita on useita, kuten esimerkiksi [GitLab](https://about.gitlab.com/).
 
-Gittiä ja GitHubia käytetään yleisesti sekä työelämässä että harrastusprojekteissa. Käyttö ei rajoitu pelkästään koodiin, vaan sen avulla voidaan tallentaa muutakin varmentamisen arvoista tietoa.  Kaikkien tiedostomuotojen versionhallintaan Git ei sovellu ainakaan suoraan.  Esimerkiksi Microsoft Office ohjelmien  tallennusmuodot ja kuvatiedostot eivät sovellu Gitin avulla hallittavaviksi. Git onkin alunperin rakennettu tekstimuotoisten tiedostojen versionhallintajärjestelmäksi. Tämän takia Git onkin suosittu versiohallintajärjestelmän sovelluskehittäjien keskuudessa.
+Gittiä ja GitHubia käytetään yleisesti sekä työelämässä että harrastusprojekteissa. Käyttö ei rajoitu pelkästään koodiin, vaan niiden avulla voidaan tallentaa muutakin varmentamisen arvoista tietoa.  Kaikkien tiedostomuotojen versionhallintaan Git ei kuitenkaan sovellu.  Esimerkiksi Microsoft Office ohjelmien  tallennusmuodot ja kuvatiedostot eivät sovellu Gitin avulla hallittavaviksi. Git onkin alunperin rakennettu tekstimuotoisten tiedostojen versionhallintajärjestelmäksi. Tämän takia Git onkin suosittu versiohallintajärjestelmä sovelluskehittäjien keskuudessa.  
+
+![Gitin asentaminen](/assets/git_asennus.jpg)  
 
 <div class="exercise">
-<h3>Tehtävä 1: Github-tunnuksen luonti {% include points.html text="5%" %}</h3>
+<h3>Tehtävä 1: Github-tunnuksen luominen {% include points.html text="5%" %}</h3>
 
-Luo aluksi GitHub-tunnus osoitteessa <a href="https://github.com/"> https://github.com/ </a>. GitHubiin rakennetaan eräänlainen koodiportfolio, joka usein linkataan myös CV:seen, kannattaa siis valita siisti käyttäjänimi.
-
-<br><br>
-Git löytyy laitoksen koneilta ja Ubuntusta valmiiksi. Muussa tapauksessa sen voi asentaa esimerkiksi <a href="https://git-scm.com/downloads" >täältä</a>, tai <a href="/komentorivi#asentamisesta">pakettienhallintajärjestelmän</a> kautta. Käytämme näissä ohjeissa Gittiä terminaalin kautta.
+Luo itsellesi GitHub-tunnus osoitteessa <a href="https://github.com/"> https://github.com/ </a>. Sovelluskehittäjät rakentavat usein GitHubiin usein eräänlaisen koodiportfolion, joka usein linkitetään osaksi CV:ä. Valitse siis oma GitHub käyttäjänimesi myös tätä ajatellen.
 
 </div>
 
 <div class="exercise">
-<h3>Tehtävä 2: Gitin konfigurointi {% include points.html text="5%" %}</h3>
-
-Konfiguroidaan hieman Gittiä.
-
-Liitä nimesi ja sähköpostiosoitteesi Gittiin niin, että kaikkiin projekteihesi tekemät muutokset liitetään sinuun seuraavilla komennoilla.
+<h3>Tehtävä 2: Gitin käyttöön määrittäminen {% include points.html text="5%" %}</h3>  
+Jos käytät Windows käyttöjärjestelmää ja Gitiä ei vielä ole asennettu, voit  asentaa sen käyttöösi  esimerkiksi <a href="https://git-scm.com/downloads" >täältä</a>. 
+Asenna Git tietokoneellesi asennusohjelman tarjoamia oletusasetuksia käyttäen. 
+Tässä ohjeessa tutustumme  Gittin käyttöön  Bash komentotulkin avulla. Gittiä voidaan toki käyttää myös muiden komentotulkkien kuten esim. Windows komentokehotteen tai Windows Powershellin avulla. Git on kuitenkin alunperin luotu juuri Linuxia ajatellen joten Bash komentotulkki on luonnollinen valinta, varsinkin kun se asentuu automaattisesti myös Windows käyttöjärjestelmään Git for Windows ohjelmistopaketin mukana. 
+Gitin asentamisen jälkeen, tulee sen asetukset määrittää halutuihin arvoihin.
+Liitä ensiksi nimesi ja sähköpostiosoitteesi Gittiin niin, että kaikki Gitin seuraamaan tietoon tekemäsi tekemäsi muutokset liitetään sinuun. 
+<br>Aseta nimesi ja sähköpostiosoitteesi seuraavilla komennoilla.
 
 </div>
 
 ```bash
-git config --global user.name "Minun Nimeni"
+git config --global user.name "Etunimi Sukunimi"
 git config --global user.email sähköposti@osoite.com
 ```
 
@@ -84,129 +85,131 @@ Jos et halua sähköpostiasi julkiseksi, GitHub tarjoaa erityisen <a href="https
 Huomaa Note-kohta äsken linkatulla sivulla! Noreplyn muoto riippuu siitä, milloin olet luonut käyttäjätunnuksen, ja jos loit tunnuksesi vasta lapio-kurssilla, saat asetettua noreply-sähköpostiosoitteen vasta kun asetat käyttäjätilisi asetuksista sähköpostiosoitteesi yksityiseksi.
 </div>
 
-Jos et ole tottunut Vimin käyttäjä, muuta Gitin oletuseditoriksi nano seuraavalla komennolla:
+Windows  ympäristössä Git asettaa oletuseditoriksi Notepad++ ohjelman ja Linux ympäristössä Vimin. Jos et ole tottunut Vimin (Linux) käyttäjä tai haluat jostain muusta syystä vaihtaa oletus editorin toiseksi, voi sen tehdä --global core.editor parametrin avulla. Muuta siis halutessasi Gitin oletuseditoriksi nano tai vaihtoehtoisesti Visual Studio Code ja tarkasta lopuksi asetukset seuraavilla komennolla:
 </div>
-```
+```bash
 git config --global core.editor nano
+git config --global core.editor "code -wait --new-window"
+git config --list
 ```
 <div class="exercise">
-Windowsissa vaihda nanon paikalle <code>notepad</code>.
+Jos käytät Windowsia ja sinulla ei ole Visual Studio Codea asennettuna, vaihda nanon tai Notepad++ paikalle <code>notepad</code>.  
 
 </div>
 
 ## Git-projektin aloittaminen
 
-Projekti on kansio, joka sisältää jotain tiedostoja. Näissä tiedostoissa voi esimerkiki olla koodia niin, että yhdessä projekti muodostaa monimutkaisen ongelman. Kansiosta saa luotua Git-projektin ajamalla komennon `git init` kyseisen kansion sisällä. Näin on tehtävä, jotta kansion sisällä voi ajaa git-komentoja. Seurauksena kansioon syntyy alikansio `.git`, johon git säilöö tietoa kyseisestä projektista.
+Git-projekti on kansio, joka sisältää tiedostoja. Näissä tiedostoissa voi esimerkiksi olla lähdekoodia tai mitä tahansa tekstipohjaista tietoa joka soveltuu Gitin avulla seurattavaksi. Kansiosta saa luotua Git-projektin suorittamalla komennon `git init` kyseisen kansion sisällä. Näin on tehtävä, jotta kansion sisällä voidaan suorittaa git-komentoja. Seurauksena kansioon syntyy alikansio `.git`, johon git säilöö tietoa kyseisestä projektista ja siinä tapahtuvista muutoksista. Alikansion voidaan ajatella olevan eräänlainen tietokanta joka mahdollistaa projektissa tapahtuneiden muutosten tarkastelun ja perumisen. Git-projekti kansiota kutsutaan myös ns. Git-työhakemistoksi (working directory).
 
 ### Commitit
 
-Tietoa tallennetaan Git-projektiin committeina. Commit on eräänlainen paketti projektin tiedostoihin tehtyjä _muutoksia_. Käytännössä muutokset tarkoittavat esimerkiksi sitä, että tekstiä lisättiin tai poistettiin jostain projektin tiedostosta.
+Tietoa tallennetaan Git-projektiin ns. committeina. Commit on eräänlainen paketti projektin tiedostoihin tehdyistä _muutoksista_. Käytännössä muutokset tarkoittavat esimerkiksi sitä, että tekstiä lisättiin tai poistettiin jostain projektin tiedostosta tai että tiedosto lisättiin tai poistettiin ko. git-projekti kansiosta.
 
-Committia voi ajatella uutena askeleena kohti valmista projektia. Jokaisessa commitissa lisätään edelliseen committiin jotain muutoksia. Esimerkiksi ohjelmaa koodattaessa uuden toiminnallisuuden lisääminen voitaisiin luontevasti paketoida yhteen committiin.
+Committin voidaan ajatella olevan eräänlainen välitallennuspiste matkalla kohti projektin valmistumista.  Jokaisessa commitissa lisätään tai poistetaan muutoksia verrattuna edelliseen committiin. Esimerkiksi ohjelmaa koodattaessa uuden toiminnallisuuden lisääminen voitaisiin luontevasti paketoida yhteen committiin. Commitit ketjuttuvat eräänlaiseksi git-projektissa tapahtuvien muutosten aikajanaksi. Git-ohjelma mahdollistaa tällä aikajanalla olevien committien tarkastelun ja tarvittaessa myös niissä olevien muutosten kumoamisen.
 
-Commitin luominen tapahtuu niin, että siihen haluttavat muutokset lisätään _staging_-tilaan. Kun kaikki halutut muutokset ovat kyseisessä tilassa, ajetaan commitin luova komento, joka yhdistää kaikki stagingissa olevat muutokset yhdeksi commitiksi.
+Commitin luominen tapahtuu siten, että työhakemistossa tapahtuneet muutokset kerätään ensin ns. _staging_-tilaan. Kun kaikki halutut muutokset ovat kyseisessä _staging_ tilassa, ajetaan commitin luova komento, joka yhdistää kaikki stagingin tilaan lisätyt muutokset  uudeksi commitiksi. Työtilassa edellisen commitin jälkeen tapahtuneet muutokset, voidaan siis paketoida yhteen tai useampaan uuteen commitiin.
 
 Tarkastellaan seuraavaksi commitin luomista esimerkin kautta.
 
 Komento `git status` on erittäin hyödyllinen, sillä se antaa tietoa Git-projektin ja sen sisältämien muutosten tämänhetkisestä tilasta.
 
-Luodaan nyt Git-projektikansio, ja lisätään sinne tyhjä tiedosto `lapio_vko2.txt` vaikka komennolla `touch`. Kun ollaan vasta luotu Git-projekti, lisätty sinne tiedosto, ja ajetaan `git status`, tulostuu
+Luodaan nyt Git-projektikansio, ja lisätään sinne tyhjä tiedosto `eka_tiedosto.txt` komennolla `touch`. Kun ollaan vasta luotu Git-projekti, lisätty sinne tiedosto, ja ajetaan `git status`, tulostuu
 
 ```bash
 On branch master
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	lapio_vko2.txt
+	eka_tiedosto.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Pureskellaan seuraavaksi hieman tulostuksen sisältöä.
+Tarkastellaanpa seuraavaksi hieman edellisen tulostuksen sisältöä.
 
 ### Muutosten eri tilat
 
-Muutoksia voidaan lisätä seuraavaan committiin komennolla `git add`. Komennolle annetaan argumenttina tiedosto, jonka sisältämät muutokset siirrettään staging-tilaan. Ennen kuin tiedosto on lisätty Gitin tietoon, on se otsikon `Untracked files` alla. Tällöin tiedoston sisältämiä muutoksia ei myöskään olla lisäämässä seuraavaan committiin. 
+Muutoksia voidaan lisätä seuraavaan committiin komennolla `git add`. Komennolle annetaan argumenttina tiedosto, jonka sisältämät muutokset siirrettään staging-tilaan. Git ei automaattisesti seuraa työkansiossa olevia tiedostoja, vaan tiedostot täytyy ensin asettaa seurannan avulla Git tietoon. Ennen kuin tiedosto on lisätty Gitin tietoon, on se otsikon `Untracked files` alla. Tällöin tiedostoa tahikka siihen tehtyjä muutoksia ei myöskään olla lisäämässä seuraavaan committiin. 
 
-Lisätään nyt lapio-tiedoston muutokset seuraavaan committiin ajamalla `git add lapio_vko2.txt`. Lisätään tiedostoon sen jälkeen hieman tekstiä komennolla `echo "tämä on lapion toinen osa" >> lapio_vko2.txt`. Ajetaan sen jälkeen `git status`:
+Jotta edellä luotu vielä tyhjä eka_tiedosto.txt saadaan Gitin seurannan piiriin lisätään se ensin seuraavaan committiin ajamalla `git add eka_tiedosto.txt`. Lisätään tiedostoon sen jälkeen hieman tekstiä komennolla `echo "tämä on tiedoston ensimmäinen osa" >> eka_tiedosto.txt`. Ajetaan sen jälkeen `git status`:
 
 ```bash
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-	new file:   lapio_vko2.txt
+	new file:   eka_tiedosto.txt
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   lapio_vko2.txt
+	modified:   eka_tiedosto.txt
 ```
-
-Lisätään tämän jälkeen projektikansioon vielä yksi tiedosto, nimeltään `tyhja_tiedosto.txt`. Ajetaan sen jälkeen uudelleen `git status`. Nyt tulostuu
+Lisätään tämän jälkeen projektikansioon vielä yksi tiedosto, nimeltään `toka_tiedosto.txt`. Ajetaan sen jälkeen uudelleen `git status`. Nyt tulostuu
 
 ```bash
 On branch master
 Changes to be committed:
   (use "git reset HEAD <file>..." to unstage)
 
-	new file:   lapio_vko2.txt
+	new file:   eka_tiedosto.txt
 
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
   (use "git checkout -- <file>..." to discard changes in working directory)
 
-	modified:   lapio_vko2.txt
+	modified:   eka_tiedosto.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	tyhja_tiedosto.txt
+	toka_tiedosto.txt
 ```
-
 Tutkitaan jälleen tulostusta.
 
-Ensimmäisenä on `Changes to be committed.` Tämän otsikon alla olevat muutokset ollaan nyt siirtämässä seuraavaan committiin.
+Ensimmäisenä on `Changes to be committed.` Tämän otsikon alla olevat muutokset ollaan siirtämässä seuraavaan committiin.
 
 `Changes not staged for commit` tarkoittaa muutoksia, jotka ovat Gitin tiedossa, mutta joita **ei** olla siirtämässä seuraavaan committiin.
 
-Lopuksi `Untracked files` tarkoittaa sellaisia tiedostoja, jotka eivät ole Gitin tiedossa, ja joissa tapahtuvia muutoksia ei siis seurata. Niistä ei voida silloin esimerkiksi kertoa, mitä muutoksia tiedostossa on tehty. Näitä muutoksia ei myöskään siis lisätä seuraavaan committiin.
+Tulosteen lopussa oleva `Untracked files` kohta tarkoittaa sellaisia tiedostoja, jotka eivät vielä ole Gitin tiedossa, ja joissa tapahtuvia muutoksia ei siis näin ollen Gitin toimesta seurata. Tiedostot siis eivät ole Git-versiohallinnan piirissä eikä niitä myöskään näin ollen  lisätä seuraavaan committiin. Koska tiedoston `toka_tiedosto.txt` luomista ei ole lisätty staging arealle, ei sitä myöskään seurata Gitin toimesta.
 
-Tulostuksessa on siis tiedosto `lapio_vko2` kahdesti, sillä Git seuraa _muutoksia_. Gitille on lisätty ensin tiedoston muutos, jossa tiedosto `lapio_vko2` luotiin. Vasta tämän jälkeen tiedostoon lisättiin tekstiä. Committiin ollaan nyt lisäämässä vain muutos, jossa tiedosto luotiin, ei muutos, jossa tiedostoon lisättiin tekstiä. Tulkintaa helpottaa se, että committiin lisättävät muutokset tulostuvat oletuksena vihreinä, ja tiedoston nimen vieressä näkyy, mitä tiedostolle on tehty (esimerkiksi `new file`, `modified`, `deleted`).
+Tulostuksessa on nyt siis tiedosto `eka_tiedosto.txt` kahdesti, sillä Git seuraa _muutoksia_. Gitille on annettu edellä tieto ainoastaan muutoksesta, jossa tiedosto `eka_tiedosto.txt` luotiin. Vasta tämän jälkeen ko. tiedostoon lisättiin tekstiä. Committiin ollaan nyt siis lisäämässä ainoastaan tieto tiedoston luomisesta. Tulkintaa helpottaa se, että committiin lisättävät muutokset tulostuvat oletuksena vihreinä, ja tiedoston nimen vieressä näkyy, mitä tiedostolle on tehty (esimerkiksi `new file`, `modified`, `deleted`).
 
-Gitin avulla voidaan myös perua muutoksia. Jos haluaisimme perua `lapio_vko2.txt`-tiedostoon lisäämämme tekstin, voitaisiin ajaa `git checkout -- lapio_vko2.txt`. Kun tämän jälkeen avaa kyseisen tiedoston, se on tyhjä, eli muutos, jossa lisättiin tekstiä, peruttiin. Komento `git checkout --` mahdollistaa siis seuratuista tiedostoista muutosten perumisen.
+Gitin avulla voidaan myös perua muutoksia. Jos haluaisimme perua `eka_tiedosto.txt`-tiedostoon lisäämämme tekstin, voitaisiin ajaa `git checkout -- eka_tiedosto.txt`. Kun tämän jälkeen avaa kyseisen tiedoston, se on tyhjä, eli muutos, jossa lisättiin tekstiä on peruttu. Komento `git checkout --` mahdollistaa siis seuratuihin tiedostoihin tehtyjen muutosten perumisen. Älä kuitenkaan kokeile komentoa sillä tiedostoon tehtyjä muutoksia ei vielä ole paketoitu committiin. Näin ollen niitä ei myöskään voi vielä perua.
 
-Ajamalla `git add -p`, voit valita muutos kerrallaan, haluatko lisätä sen Gitin committiin (y=lisää, n=älä lisää). Komento ottaa huomioon vain muutokset tiedostoissa, _jotka on jo kertaalleen lisätty Gittiin_. Näin ollen esimerkiksi uusia tiedostoja ei voi lisätä Gittiin komennon `git add -p` avulla. Pelkkä `git add tiedosto` lisää kaikki tiedoston muutokset Gittiin. Samalla komennolla on myös mahdollista lisätä kerralla kokonaisen kansion sisältämät muutokset.
+Ajamalla `git add -p`, voit valita muutos kerrallaan, haluatko lisätä sen Gitin committiin (y=lisää, n=älä lisää). Komento ottaa huomioon vain muutokset tiedostoissa, _jotka on jo kertaalleen lisätty Gittiin_. Näin ollen esimerkiksi uusia tiedostoja ei voida lisätä Gittiin komennon `git add -p` avulla. Pelkkä `git add tiedosto` lisää kaikki tiedoston muutokset Gittiin kerralla. Komennolla `git add .`on myös mahdollista lisätä kerralla kokonaisen kansion sisältämät muutokset.
 
 <div class="warning">
 Jos pidät mahdollisena, että haluat jakaa projektin joskus muille, älä lisää sen commiteihin mitään salaista. Vaikka poistaisit tiedon seuraavassa commitissa, se jää Gitin projekti-historiaan, ja on löydettävissä GitHubista julkaisun jälkeen.
 </div>
 
-Komennon `git status` avulla kannattaa jatkuvasti tarkistaa, missä tiedostoissa sijaitsevat muutokset olet lisäämässä committiin. Sen jatkuva ajaminen on hyvä tapa, joka kannattaa omaksua.
+Komennon `git status` avulla kannattaa säännöllisesti tarkistaa, muutokset joita olet lisäämässä seuraavaan committiin. Komennon toistuva suorittaminen on hyvä tapa, joka kannattaa omaksua.
 
 ### Commitin paketointi
 
-Kun ollaan valittu, mitä muutoksia halutaan lisätä committiin, paketoidaan se komennolla `git commit`. Jokaisella commitilla on otsikko, joka kuvaa siinä tehtyjä muutoksia. Otsikko voidaan lisätä komennolla `git commit -m "kuvaava otsikko"`, jossa kuvaava otsikko kertoo, mitä muutoksia tehtiin suhteessa edelliseen committiin. Jos komennosta jättää vivun `-m` ja viestin sen jälkeen pois, tekstieditori aukeaa, ja voit kirjoittaa otsikon, sekä pidemmän viestin sen alle. Committi luodaan tällöin, kun tallennat viestin ja poistut editorista.
+Kun ollaan valittu, mitä muutoksia halutaan lisätä seuraavaan committiin, paketoidaan se komennolla `git commit`. Jokaisella commitilla on otsikko, joka kuvaa siinä tehtyjä muutoksia. Otsikko voidaan lisätä komennolla `git commit -m "kuvaava otsikko"`, jossa kuvaava otsikko kertoo, mitä muutoksia tehtiin suhteessa edelliseen committiin. Jos komennosta jättää pois parameterin `-m` ja viestin sen jälkeen pois, tekstieditori aukeaa, ja voit kirjoittaa otsikon, sekä pidemmän viestin sen alle. Committi luodaan, kun tallennat viestin ja poistut editorista.
 
 [Täältä](https://github.com/erlang/otp/wiki/writing-good-commit-messages) löytyy nopeat ohjeet hyvän commit-viestin kirjoittamiseksi.
 
-Jatketaan edellistä esimerkkiä. Lisätään seuraavaan committiin kaikki muutokset, paitsi tiedoston `tyhja_tiedosto` luonti. Ennen komennon `git commit` ajamista, komennon `git status` tulostus on seuraava:
+Jatketaan edellistä esimerkkiä. Lisätään seuraavaan committiin myös tieto siitä että tiedostoon`eka_tiedosto.txt`lisätty tekstiä. Annetaa uudelleen komento `git add eka_tiedosto.txt`jolloin myös tiedostoon tehty muutos lisätään staging arealle. Tiedoston `toka_tiedosto.txt` luominen jää edelleen commitin ulkopuolelle. Ennen komennon `git commit` suorittamista, komennon `git status` tulostus on seuraava:
 
 ```bash
 On branch master
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
 
-	new file:   lapio_vko2.txt
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   eka_tiedosto.txt
 
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
+        toka_tiedosto.txt
 
-	tyhja_tiedosto.txt
 ```
 
-Ajetaan seuraavaksi `git commit -m "Lisää uusi lapio-tiedosto"`
+Suoritetaan seuraavaksi komento `git commit -m "Lisätty eka_tiedosto.txt"`
 
 Nyt `git status` tulostaa :
 
@@ -215,22 +218,22 @@ On branch master
 Untracked files:
   (use "git add <file>..." to include in what will be committed)
 
-	tyhja_tiedosto.txt
+	toka_tiedosto.txt
 
 nothing added to commit but untracked files present (use "git add" to track)
 ```
 
-Commitoidut muutokset eivät siis enää näy statuksessa. Ne eivät kuitenkaan ole hävinneet: ne on siirretty committiin. Komennolla `git log` pystyt tarkastelemaan luotuja committeja:
+Commitoidut muutokset eivät siis enää näy status tulosteessa. Ne eivät kuitenkaan ole hävinneet: ne on siirretty commit komennon kautta .git kansiossa olevaan Git tietokantaan. Komennolla `git log` pystyt tarkastelemaan luotuja committeja:
 
 ```
 commit 51bf544c786a671c28f70713b6cb33d87cc38
-Author:
-Date:
+Author:Etunimi Sukunimi
+Date:18.5.2020
 
-    Lisättiin lapio_vko2.txt -tiedosto
+    Lisätty eka_tiedosto.txt -tiedosto
 ```
 
-Komento `git log` siis tulostaa commitin tekijän, luontiajan, sekä commitille annetun otsikon. Jokaisella commitilla on sen identifioiva merkkijono eli id, joka on [SHA-1](https://en.wikipedia.org/wiki/SHA-1)-muodossa. Komennon `git log` tulostuksessa id näkyy pitkänä merkkijonona, esimerkiksi tässä tapauksessa se on `51bf544c786a671c28f70713b6cb33d87cc38`.
+Komento `git log` siis tulostaa commitin tekijän, luontiajan, sekä commitille annetun otsikon. Jokaisella commitilla on sen identifioiva merkkijono eli id, joka on [SHA-1](https://en.wikipedia.org/wiki/SHA-1)-muodossa. Komennon `git log` tulostuksessa id näkyy pitkänä merkkijonona, esimerkiksi tässä tapauksessa se on `51bf544c786a671c28f70713b6cb33d87cc38`. SHA-1 merkkijono yksilöi Git-tietokannassa olevat objektit.
 
 <div class="note">
 Commitin luominen voi aluksi tuntua epäintuitiiviselta. Seuraava ajatusleikki saattaa auttaa: Kuvittele, että commit on lahjapaketti. Istut lattialla. Muutokset ovat puupalikoita, jotka on levitetty lattialle viereesi. <code>Changes to be commited</code>-tila on eteesi levitetty käärepaperi. Komennolla <code>git add</code> lisäät muutoksia käärepaperin päälle, ja komennolla <code>git commit</code> sidot käärepaperin muutosten ympärille.
@@ -238,9 +241,9 @@ Commitin luominen voi aluksi tuntua epäintuitiiviselta. Seuraava ajatusleikki s
 
 ### Haarat
 
-Komennon `git status` tulosteen yläreunassa näkyy: `On branch master`. Haarat, eli englanniksi _branchit_, mahdollistavat joidenkin committien eriyttäimisen toisistaan. Näin ollen on mahdollista kehittää uuden haaran sisältöä ilman, että menetetään toimiva versio ohjelmasta. Tavanomaisesti jokaisella projektilla on päähaara, joka on yleensä nimeltään`master`, ja jossa pidetään senhetkistä toimivaa ja käytössä olevaa versiota.
+Komennon `git status` tulosteen yläreunassa näkyy: `On branch master`. Haarat, eli englanniksi _branchit_, mahdollistavat committien erottamisen toisistaan. Näin ollen on mahdollista kehittää uuden haaran sisältöä ilman, että menetetään toimiva versio ohjelmasta. Tavanomaisesti jokaisella projektilla on päähaara, joka on yleensä nimeltään`master`, ja jossa pidetään senhetkistä toimivaa ja käytössä olevaa versiota tiedosta.
 
-Usein haaroja käytetään niin, että päähaarasta erotetaan uuden toiminnallisuuden testaamiseksi toinen haara, jossa koodataan lisäominaisuuksia. Haarat eivät vaikuta toistensa tiloihin, eli uudella koodilla voidaan leikkiä huolimatta päähaarasta. Kun ollaan todettu uusi koodi toimivaksi, voidaan se lisätä päähaaraan, ja poistaa uusi haara. Tässä osassa ei käsitellä haaroja sen enempää: riittää ymmärtää, että käytämme nyt vain master-, eli päähaaraa.
+Usein haaroja käytetään niin, että päähaarasta erotetaan uuden toiminnallisuuden kehittämiseksi toinen haara, jossa lisäominaisuuksia kehitetään. Haarat eivät vaikuta toistensa tiloihin, eli uutta toiminnallisuutta voidaan kehittää huolimatta päähaarasta. Haaroissa olevat commitit ketjuttuvat haaran omalla aikajanalle ja eivät vaikuta toisiinsa. Kun ollaan todettu uusi ominaisuus toimivaksi, voidaan se yhdistää päähaaraan, ja poistaa uusi haara. Tässä osassa ei käsitellä haaroja sen enempää: riittää ymmärtää, että käytämme nyt vain master-, eli päähaaraa.
 
 <div class="exercise">
 <h3>Tehtävä 3: Committien harjoittelua {% include points.html text="10%" %}</h3>
